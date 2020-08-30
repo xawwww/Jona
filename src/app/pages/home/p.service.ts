@@ -45,13 +45,13 @@ path: string= 'http://localhost:8000/apiproducto';
 conveProducto(){
   this.getProducto()
   .subscribe(data  => {
-    console.log("Mis productos");
+    //console.log("Mis productos");
     console.log(data);
     //this.Product.push(...data);
-   
+
   })
  }
- 
+
 
  getPro(){
   this.conveProducto();

@@ -3,7 +3,7 @@ import { PService } from './p.service';
 import { Storage} from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from '../../services/cart.service';
+import { Product } from './p.service';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +42,7 @@ ngOnInit(){
 
 addToCart(product){
 
-}
+}  
 openCart(){
 
 }
