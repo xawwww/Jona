@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+//import { productos } from './p.service';
 
 export interface Product{
 
@@ -19,68 +20,32 @@ precio_venta: number;
 presentation: string;
 stock: number;
 stockfraccion: string;
-
-
-
 }
 @Injectable({
   providedIn: 'root'
 })
 export class PService {
   
-  Product: any [];
+  conversion:any;
+
+  produ: [];
   private cart = [];
   private cartItemCount = new BehaviorSubject(0);
  
-
-
 path: string= 'http://localhost:8000/apiproducto';
 
   constructor( private http: HttpClient ) { }
+
   getProducto(){
-    return this.http
-    .get(this.path);
+   this.http.get(this.path).subscribe(data => {  
+     this.conversion = data;
+     this.produ = this.conversion;
+     console.log(this.produ);
     
- }
-conveProducto(){
-  this.getProducto()
-  .subscribe(data  => {
-    //console.log("Mis productos");
-    console.log(data);
-    //this.Product.push(...data);
-
-  })
- }
-
-
- getPro(){
-  this.conveProducto();
-   return this.Product;
-
- }
- getCart(){
-   return this.cart;
- }
- getCartItemCount(){
-   return this.cartItemCount;
- }
-
-addProducto(producto){
-
-}
-decreaseProducto(producto){
-
+   }); 
+   return this.produ;
+   //console.log(this.produ);
+   
+    }
 }
 
-removeProducto(producto){
-
-}
-
-
-
-
-
-
-
-
-}

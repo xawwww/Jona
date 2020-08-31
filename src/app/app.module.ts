@@ -12,6 +12,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import {HttpClientModule } from '@angular/common/http';
 import {AccessProviders} from './providers/access-providers';
 import { CarModalPageRoutingModule } from './pages/car-modal/car-modal-routing.module';
+
+import { PService } from './pages/home/p.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,6 +26,7 @@ import { CarModalPageRoutingModule } from './pages/car-modal/car-modal-routing.m
     StatusBar,
     SplashScreen,
     AccessProviders,
+    PService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

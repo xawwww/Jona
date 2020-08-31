@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import{ CartService} from '../../services/cart.service';
 //import{Product}   from '../../services/cart.service';
-import{productos}   from '../home/producto.service';
+import{Product}   from '../home/p.service';
 import { ModalController } from '@ionic/angular';
 import { ProductoService } from '../home/producto.service';
 
