@@ -4,6 +4,9 @@ import { Storage} from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from './p.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../api.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,18 +14,24 @@ import { Product } from './p.service';
   styleUrls: ['./home.page.scss'],
 })
 
-export class HomePage implements OnInit {
+export class HomePage   {
 
-  products: any = [];
-  datastorage: any;
-  name: string;
-  cart = [];
-  cartItemCount: BehaviorSubject<number>;
+ 
+  dataproducto: any;
+  datastorage : any;
+  name: string ;
+  
 
 constructor(
   public pservice: PService,
   private storage: Storage,
-  private modalCtrl: ModalController ) { }
+  private modalCtrl: ModalController,
+  private http: HttpClient,
+  public api: ApiService ) {
+
+    
+   }
+
 
 ionViewDidEnter(){
   this.storage.get('storage_xxx').then((res) => {
@@ -30,25 +39,32 @@ ionViewDidEnter(){
     this.datastorage = res;
     this.name = this.datastorage.nombre;
   });
-   this.pservice.getProducto('http://localhost:8000/apiproducto').subscribe((rest: any) => {  
-       console.log(this.rest);
-     
-    });
+  
 
 
 }
+
+
 ngOnInit(){
-     this.products = this.pservice.getProducto();
-   // this.cart = this.pservice.getCart();
-  //this.cartItemCount = this.pservice.getCartItemCount();
+  this.getDataProducto();   
+ 
 }
-
-
-
-
-addToCart(product){
+async getDataProducto(){
+  await this.api.getDataProducto()
+  .subscribe(res => {
+    console.log(res);
+    this.dataproducto = res;
+    console.log(this.dataproducto);
+  }, err => {
+    console.log(err);
+  });
 }
-openCart(){
-}
+  
+
+
+
+
+
+
 
 }

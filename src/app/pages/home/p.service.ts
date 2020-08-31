@@ -36,7 +36,7 @@ path: string= 'http://localhost:8000/apiproducto';
 
   constructor( private http: HttpClient ) { }
 
-  getProducto(){
+  getDataProducto(){
    this.http.get(this.path).subscribe(data => {  
      this.conversion = data;
      this.produ = this.conversion;
